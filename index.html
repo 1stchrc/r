@@ -2,20 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"/>
   <title>线性数据结构</title>
 </head>
 <body>
   <div id="content"></div>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" data-manual></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-  <script>
-    const md = markdownit();
+  <script type="module">
+    import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm';
+    import markdownItKatex from 'https://cdn.jsdelivr.net/npm/markdown-it-katex@2.0.3/+esm'
+    const md = markdownIt();
+    md.use(markdownItKatex);
     (async () => {
         let fname2render = "./default.md";
-        let params = new URLSearchParams(document.location.params);
-        if(params.has("page"))fname2render = `./${params.get(page)}.md`;
+        let params = new URLSearchParams(document.location.search);
+        if(params.has("page"))fname2render = `./${params.get("page")}.md`;
         let fres = await fetch(fname2render);
         if(!fres.ok){
           fres = await fetch("./badpage.md");
