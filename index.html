@@ -1,22 +1,21 @@
+<!doctype html>
 <html>
-    <body>
-        <h1>找到梯子的端口号<br/>
-        以v2rayN为例:</h1>
-        <img src="./a.png"/><br/>
-        <img src="./b.png"/><br/>
-        <h1>然后在控制台输入<br/>
-        git config --global https.proxy 127.0.0.1:[端口号]<br/>
-        在这个例子中端口号为10808<br/><br/>
-        机场的使用方法:<br/>
-        以v2rayN为例:
-        </h1><br/>
-        <img src="./c.png"/><br/>
-        <img src="./d.png"/><br/>
-        <h1>可选url设置成机场链接<br/>
-        </h1>
-        <img src="./e.png"/><br/>
-        <h1>用更新订阅来从机场获取节点
-        </h1>
-        aaa
-    </body>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+</head>
+<body>
+  <div id="content"></div>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script>
+    const md = markdownit();
+    (async () => {
+        let text = (await fetch("./a.md")).body;
+        document.getElementById('content').innerHTML =
+        md.render('# Marked in browser\n\nRendered by **markdownit**.');
+    })();
+    
+  </script>
+</body>
 </html>
