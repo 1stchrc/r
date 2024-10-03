@@ -13,7 +13,7 @@
     (async () => {
         let text = (await fetch("./a.md")).body;
         document.getElementById('content').innerHTML =
-        md.render('# Marked in browser\n\nRendered by **markdownit**.');
+        md.render(text);
     })();
     
   </script>
